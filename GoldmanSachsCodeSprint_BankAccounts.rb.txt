@@ -1,0 +1,64 @@
+#!/bin/ruby
+
+def feeOrUpfront(n, k, x, d, p)
+    # Complete this function
+    z = 0
+    if (n < 1|| n > 100)
+       puts "Error1"
+       return;
+    end
+    if (k < 1|| k > 1000)
+       puts "Error2"
+       return;
+    end
+    if (x < 1|| x > 100)
+       puts "Error3"
+       return
+    end
+    if (d < 1|| d > 100000)
+       puts "Error4"
+       return
+    end
+    error = ""
+   for item in p
+     if (item < 1|| item > 1000)
+       error = "Error5"
+       break
+    end
+       y = (x*item)/100.0
+        if k<y
+            z = z+y
+        else 
+            z = z+k
+        end
+    end
+    if error == ""
+        if d<z
+            return "upfront"
+        else
+            return "fee"
+        end
+    else 
+    return error
+    end
+    
+
+end
+
+q = gets.strip.to_i
+   if (q < 1|| q > 5)
+       puts ""
+       return
+   end
+for a0 in (0..q-1)
+    n, k, x, d = gets.strip.split(' ')
+    n = n.to_i
+    k = k.to_i
+    x = x.to_i
+    d = d.to_i
+    p = gets.strip
+    p = p.split(' ').map(&:to_i)
+    
+    result = feeOrUpfront(n, k, x, d, p)
+    puts result
+end
